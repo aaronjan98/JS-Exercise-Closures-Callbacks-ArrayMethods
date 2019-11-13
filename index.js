@@ -148,7 +148,7 @@ function processContains(item, list, callback) {
  * It takes two arguments:
  * @param list array of elements of any kind.
  * @param callback function that takes an array as its argument.
- * @returns the result of invoking `callback` passing a de-duped version of `list`.
+ * @returns the result of invoking `callback` passing a .de-duped version of `list`
  * 
  * Examples of usage of this higher-order function:
  * [1] Invoking `processDuplicateFree` passing `[1,1,1,2]` and `(arr) => arr`,
@@ -157,8 +157,14 @@ function processContains(item, list, callback) {
  * [2] Invoking `processDuplicateFree` passing `[1,1,2,2,3]` and `(arr) => arr.length`,
  * should return 3.
 */
-function processDuplicateFree(/* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS */) {
-  /* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS */
+function processDuplicateFree(list, callback) {
+  let unique = [];
+  for(let i = 0; i < list.length; i++){
+    if(!unique.includes(list[i])) {
+      unique.push(list[i]);
+    }
+  }
+  return callback(unique);
 }
 
 /////////////// HIGHER-ORDER ARRAY METHODS ///////////////
@@ -287,10 +293,10 @@ function counterMaker() {
  * counter() // should return 0
  * etc
 */
-function counterMakerWithLimit(maxValue /*limit*/) {
+function counterMakerWithLimit(maxValue) {
   // const counter = function (){
   //   for(let count = 0;  ; count++){
-  //     if(count === limit+1){
+  //     if(count === maxValue+1){
   //       count = 0;
   //     }
   //     return count;
