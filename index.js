@@ -179,8 +179,12 @@ function processDuplicateFree(/* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS
  * @returns an array with all the runners' full names in the following format: "Smith, John".
  * The full names appear in the array in the same order the runners appear in the `runners` array.
 */
-function getFullNames(/* CODE HERE */) {
-  /* CODE HERE */
+function getFullNames(runners) {
+  let fullName = [];
+  runners.forEach(function(items){
+    return fullName.push(`${items.last_name}, ${items.first_name}`);
+  })
+  return fullName;
 }
 
 /**
@@ -195,8 +199,11 @@ function getFullNames(/* CODE HERE */) {
  * @returns an array with all the runners' first names in ALL CAPS.
  * The first names appear in the array in the same order the runners appear in the `runners` array.
 */
-function firstNamesAllCaps(/* CODE HERE */) {
-  /* CODE HERE */
+function firstNamesAllCaps(runners) {
+  const capitalized = runners.map(function (item){
+    return item.first_name.toUpperCase();
+  });
+  return capitalized;
 }
 
 /**
@@ -212,8 +219,11 @@ function firstNamesAllCaps(/* CODE HERE */) {
  * @returns an array containing only the runners that use the given `tShirtSize`.
  * The runners in the array appear in the same order they appear in the `runners` array.
 */
-function getRunnersByTShirtSize(/* CODE HERE */) {
-  /* CODE HERE */
+function getRunnersByTShirtSize(runners, tShirtSize) {
+  const newSize = runners.filter(function (rightSize){
+    return rightSize.shirt_size === tShirtSize;
+  })
+  return newSize;
 }
 
 /**
@@ -226,8 +236,11 @@ function getRunnersByTShirtSize(/* CODE HERE */) {
  * @param runners array of runners like the one inside the /data/runners.js file.
  * @returns a number which is the sum of the donations by all runners.
 */
-function tallyUpDonations(/* CODE HERE */) {
-  /* CODE HERE */
+function tallyUpDonations(runners) {
+  const tally = runners.reduce(function (accumulator, currentValue) {
+    return accumulator + currentValue.donation;
+  }, 0)
+  return tally;
 }
 
 /////////////// CLOSURES ///////////////
@@ -247,12 +260,11 @@ function tallyUpDonations(/* CODE HERE */) {
  * etc
 */
 function counterMaker() {
-  // BROKEN CODE STARTS
-  const count = 0;
-  function counter() {
-    ++count
+  let count = 0;
+  const maker = function counter() {
+    return count++;
   }
-  // BROKEN CODE ENDS
+  return maker;
 }
 
 /**
@@ -275,8 +287,26 @@ function counterMaker() {
  * counter() // should return 0
  * etc
 */
-function counterMakerWithLimit(/* CODE HERE */) {
-  /* CODE HERE */
+function counterMakerWithLimit(maxValue /*limit*/) {
+  // const counter = function (){
+  //   for(let count = 0;  ; count++){
+  //     if(count === limit+1){
+  //       count = 0;
+  //     }
+  //     return count;
+  //   }
+  // }
+  // return counter;
+  let count = 0;
+  function counter(){
+    if(count <= maxValue){
+      return count ++;
+    }else{
+      count = 0;
+      return count++;
+    }
+  }
+  return counter;
 }
 
 /////////////// END OF CHALLENGE ///////////////
